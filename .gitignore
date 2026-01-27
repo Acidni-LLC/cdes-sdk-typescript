@@ -1,8 +1,5 @@
-# Dependencies
+﻿# Dependencies
 node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
 # Build output
 dist/
@@ -30,9 +27,6 @@ coverage/
 # Logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
 
 # Temporary files
 *.tmp
