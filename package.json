@@ -1,9 +1,17 @@
-{
+﻿{
   "name": "@cdes-world/sdk-typescript",
   "version": "1.1.0",
   "description": "Cannabis Data Exchange Standard (CDES) TypeScript SDK for parsing and working with cannabis industry data",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Acidni-LLC/cdes-sdk-typescript"
+  },
+  "homepage": "https://cdes.world",
+  "bugs": {
+    "url": "https://github.com/Acidni-LLC/cdes-sdk-typescript/issues"
+  },
   "scripts": {
     "build": "tsc",
     "test": "jest",
@@ -15,7 +23,9 @@
     "cannabis",
     "data",
     "sdk",
-    "typescript"
+    "typescript",
+    "terpenes",
+    "cannabinoids"
   ],
   "author": "Acidni LLC",
   "license": "MIT",
