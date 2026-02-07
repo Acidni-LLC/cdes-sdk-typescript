@@ -80,3 +80,99 @@ export interface CDESParsedData {
   parseMode: "standard" | "cdes" | "unknown";
   recordsProcessed: number;
 }
+
+// =============================================================================
+// COA / Lab Result Models (CDES v1.0)
+// =============================================================================
+
+/** Test result status */
+export type TestStatus = "pass" | "fail" | "pending" | "not-tested" | "not-applicable" | "detected" | "not-detected";
+
+/** Analytical test method */
+export type TestMethod = "HPLC" | "GC-MS" | "LC-MS" | "GC-FID" | "ICP-MS" | "PCR";
+
+/** Testing laboratory information */
+export interface LabInfo {
+  name: string;
+  licenseNumber?: string;
+  phone?: string;
+  website?: string;
+  accreditations?: string[];
+}
+
+/** Sample information on a COA */
+export interface SampleInfo {
+  batchNumber: string;
+  productName: string;
+  sampleId?: string;
+  strainName?: string;
+  productType?: "flower" | "pre-roll" | "concentrate" | "vape" | "edible" | "tincture" | "topical" | "capsule" | "other";
+  receivedDate?: string;
+  testedDate?: string;
+  harvestDate?: string;
+  producerName?: string;
+  producerLicense?: string;
+}
+
+/** A single safety analyte test result */
+export interface SafetyTestResult {
+  analyte: string;
+  result?: number;
+  resultText?: string;
+  limit?: number;
+  unit?: string;
+  status: TestStatus;
+}
+
+/** A category of safety tests */
+export interface SafetyTestCategory {
+  status: TestStatus;
+  analytes?: SafetyTestResult[];
+}
+
+/** All safety and compliance test results */
+export interface SafetyTests {
+  microbials?: SafetyTestCategory;
+  pesticides?: SafetyTestCategory;
+  heavyMetals?: SafetyTestCategory;
+  residualSolvents?: SafetyTestCategory;
+  mycotoxins?: SafetyTestCategory;
+  moisture?: SafetyTestCategory;
+  waterActivity?: SafetyTestCategory;
+  foreignMatter?: SafetyTestCategory;
+}
+
+/** Potency test summary */
+export interface PotencyResults {
+  status: TestStatus;
+  totalThc?: number;
+  totalCbd?: number;
+  totalCannabinoids?: number;
+}
+
+/**
+ * Certificate of Analysis (COA) - Full lab report (CDES v1.0)
+ *
+ * A comprehensive lab test report for a cannabis sample, including
+ * cannabinoid and terpene profiles, potency, and safety test results.
+ *
+ * Schema: https://schemas.terprint.com/cdes/v1/coa.json
+ */
+export interface COA {
+  id: string;
+  lab: LabInfo;
+  sample: SampleInfo;
+  overallStatus: "pass" | "fail" | "pending" | "partial";
+  coaNumber?: string;
+  cannabinoids?: Cannabinoid[];
+  terpenes?: Terpene[];
+  potencyResults?: PotencyResults;
+  safetyTests?: SafetyTests;
+  issuedDate?: string;
+  expirationDate?: string;
+  pdfUrl?: string;
+  qrCode?: string;
+  notes?: string;
+  testMethod?: TestMethod;
+  metadata?: Record<string, unknown>;
+}
