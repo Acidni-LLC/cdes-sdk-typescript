@@ -20,7 +20,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: products/cdes-sdk-typescript
+        working-directory: .
     
     steps:
       - name: Checkout repository
@@ -32,7 +32,7 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
-          cache-dependency-path: products/cdes-sdk-typescript/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
