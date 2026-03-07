@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-03-07
+
+### Changed
+
+- **BREAKING (visual)**: Cannabinoid color palette updated to v1.3 deep jewel tones for WCAG AAA compliance
+  - THC: `#E74C3C` → `#B71C1C`
+  - CBD: `#3498DB` → `#1565C0`
+  - CBN: `#E67E22` → `#A0522D`
+  - CBG: `#9B59B6` → `#6A1B9A`
+  - CBC: `#16A085` → `#00695C`
+  - THCV: `#F39C12` → `#C77C02`
+  - CBDV: `#1ABC9C` → `#00796B`
+
+### Added
+
+- CBGA and Delta-8 THC to `STANDARD_CANNABINOIDS` (9 → 11 cannabinoids)
+- Accessibility metadata on `CannabioidColor` interface:
+  - `pattern` — SVG pattern identifier for colorblind-safe rendering
+  - `shape` — Unicode shape for secondary visual encoding
+  - `legacyHex` — Previous v1.2 hex value for migration reference
+- CBDA and THCA color definitions (previously uncolored)
+
+## [1.2.0] - 2026-02-15
+
+### Added
+
+- CBGA and Delta-8 THC to standard cannabinoid set
+- `MaxCannabinoids` constant updated from 9 to 11
+
 ## [1.1.1] - 2026-01-27
 
 ### Fixed

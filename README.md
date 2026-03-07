@@ -113,8 +113,10 @@ import { getCannabioidColor, STANDARD_CANNABINOIDS } from "@cdes-world/sdk-types
 
 // Get color for specific cannabinoid
 const thcColor = getCannabioidColor("THC");
-console.log(thcColor.hex); // "#E74C3C"
+console.log(thcColor.hex); // "#B71C1C"
 console.log(thcColor.therapeutic); // "Psychoactive, Pain Relief, Nausea"
+console.log(thcColor.pattern); // "diagonal-stripe"
+console.log(thcColor.shape); // "▲"
 
 // Access all cannabinoids
 Object.entries(STANDARD_CANNABINOIDS).forEach(([name, color]) => {
@@ -214,7 +216,7 @@ Get color and metadata for cannabinoid:
 
 ```typescript
 const color = getCannabioidColor("THC");
-// Returns: { hex, rgb, therapeutic, threshold }
+// Returns: { hex, rgb, therapeutic, threshold, pattern, shape, legacyHex }
 ```
 
 #### `normalizeCannabioidName(name: string): string`
@@ -251,15 +253,19 @@ interface CannabinoidProfile {
 
 **Standard Cannabinoids:**
 
-| Name | Color | Hex | Therapeutic |
-| --- | --- | --- | --- |
-| THC | 🔴 | #E74C3C | Psychoactive, Pain Relief, Nausea |
-| CBD | 🔵 | #3498DB | Anti-inflammatory, Anxiety, Seizures |
-| CBN | 🟠 | #E67E22 | Sedation, Sleep, Anti-inflammatory |
-| CBG | 🟣 | #9B59B6 | Uplift, Focus, Appetite Stimulant |
-| CBC | 🟢 | #16A085 | Anti-inflammatory, Mood Support |
-| THCV | 🟡 | #F39C12 | Energy, Appetite Suppression, Focus |
-| CBDV | 🩵 | #1ABC9C | Seizure Support, Nausea |
+| Name | Hex | Pattern | Shape | Therapeutic |
+| --- | --- | --- | --- | --- |
+| THC | #B71C1C | diagonal-stripe | ▲ | Psychoactive, Pain Relief, Nausea |
+| CBD | #1565C0 | horizontal-line | ● | Anti-inflammatory, Anxiety, Seizures |
+| CBN | #A0522D | crosshatch | ◆ | Sedation, Sleep, Anti-inflammatory |
+| CBG | #6A1B9A | dots | ■ | Uplift, Focus, Appetite Stimulant |
+| CBC | #00695C | vertical-line | ★ | Anti-inflammatory, Mood Support |
+| THCV | #C77C02 | checkerboard | ▼ | Energy, Appetite Suppression, Focus |
+| CBDV | #00796B | zigzag | ◇ | Seizure Support, Nausea |
+| CBDA | #9E7C1F | wave | ○ | Anti-inflammatory, Nausea |
+| THCA | #880E0E | grid | □ | Neuroprotective, Anti-inflammatory |
+| CBGA | #4A148C | spiral | ⬡ | Precursor Cannabinoid, Anti-inflammatory |
+| Delta-8 THC | #C62828 | dash | ⬟ | Mild Psychoactive, Anti-nausea |
 
 ## Supported Data Formats
 
