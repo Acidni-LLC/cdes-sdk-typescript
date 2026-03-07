@@ -67,7 +67,7 @@ export {
 export * from "./terpenes";
 
 // Version
-export const SDK_VERSION = "1.2.0";
+export const SDK_VERSION = "1.3.0";
 
 // Library metadata
 export const LIBRARY_INFO = {
