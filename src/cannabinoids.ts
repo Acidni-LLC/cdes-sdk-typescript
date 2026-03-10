@@ -130,8 +130,7 @@ export function normalizeCannabioidName(name: string): string {
     .toUpperCase()
     .trim()
     .replace(/[\s\-_]/g, "")
-    .replace(/%/g, "")
-    .substring(0, 5);
+    .replace(/%/g, "");
 }
 
 /** Get color for cannabinoid */
@@ -139,23 +138,46 @@ export function getCannabioidColor(
   name: string
 ): CannabioidColor | undefined {
   const normalized = normalizeCannabioidName(name);
-  for (const [key, color] of Object.entries(STANDARD_CANNABINOIDS)) {
-    if (key.includes(normalized) || normalized.includes(key)) {
-      return color;
+  const entry = findCannabioidEntry(normalized);
+  return entry ? entry[1] : undefined;
+}
+
+/**
+ * Find the best-matching STANDARD_CANNABINOIDS entry.
+ * Uses exact match first, then longest-key-first fuzzy match so that
+ * CBGA is not incorrectly matched to CBG (which appears earlier in the map).
+ */
+function findCannabioidEntry(
+  normalized: string
+): [string, CannabioidColor] | undefined {
+  const entries = Object.entries(STANDARD_CANNABINOIDS);
+
+  // 1. Exact match on normalized keys
+  for (const [key, color] of entries) {
+    if (normalizeCannabioidName(key) === normalized) {
+      return [key, color];
     }
   }
+
+  // 2. Fuzzy match — sort longest key first so CBGA beats CBG, THCA beats THC
+  const sorted = [...entries].sort(
+    (a, b) => b[0].length - a[0].length
+  );
+  for (const [key, color] of sorted) {
+    const normKey = normalizeCannabioidName(key);
+    if (normKey.includes(normalized) || normalized.includes(normKey)) {
+      return [key, color];
+    }
+  }
+
   return undefined;
 }
 
 /** Find cannabinoid display name */
 export function getCannabioidDisplayName(name: string): string {
   const normalized = normalizeCannabioidName(name);
-  for (const key of Object.keys(STANDARD_CANNABINOIDS)) {
-    if (key.includes(normalized) || normalized.includes(key)) {
-      return key;
-    }
-  }
-  return name;
+  const entry = findCannabioidEntry(normalized);
+  return entry ? entry[0] : name;
 }
 
 /** Calculate Euclidean distance between two cannabinoid profiles */

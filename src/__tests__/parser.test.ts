@@ -25,10 +25,23 @@ describe("CDES SDK", () => {
     test("getCannabioidColor returns correct color", () => {
       const thcColor = getCannabioidColor("THC");
       expect(thcColor).toBeDefined();
-      expect(thcColor?.hex).toBe("#E74C3C");
+      expect(thcColor?.hex).toBe("#B71C1C");
 
       const cbdColor = getCannabioidColor("CBD");
-      expect(cbdColor?.hex).toBe("#3498DB");
+      expect(cbdColor?.hex).toBe("#1565C0");
+
+      // Acid forms must resolve to their own entries, not their base form
+      const cbgaColor = getCannabioidColor("CBGA");
+      expect(cbgaColor).toBeDefined();
+      expect(cbgaColor?.hex).toBe("#4A148C"); // CBGA, not CBG (#6A1B9A)
+
+      const thcaColor = getCannabioidColor("THCA");
+      expect(thcaColor).toBeDefined();
+      expect(thcaColor?.hex).toBe("#880E0E"); // THCA, not THC (#B71C1C)
+
+      const cbdaColor = getCannabioidColor("CBDA");
+      expect(cbdaColor).toBeDefined();
+      expect(cbdaColor?.hex).toBe("#9E7C1F"); // CBDA, not CBD (#1565C0)
     });
 
     test("STANDARD_CANNABINOIDS has all major cannabinoids", () => {
