@@ -196,9 +196,9 @@ export class CDESAnalyzer {
         ratio = `${ratioParts.toFixed(1)}:1 CBD:THC`;
       }
     } else if (thc > 0) {
-      ratio = `${thc.toFixed(1)}% THC`;
+      ratio = `${thc.toFixed(2)}% THC`;
     } else if (cbd > 0) {
-      ratio = `${cbd.toFixed(1)}% CBD`;
+      ratio = `${cbd.toFixed(2)}% CBD`;
     }
 
     return { type, thcContent, cbdContent, ratio };
