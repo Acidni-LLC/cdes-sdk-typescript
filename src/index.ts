@@ -66,13 +66,32 @@ export {
 // Terpene Utilities (uses reference data)
 export * from "./terpenes";
 
+// Ratio Analysis (CDES v1.5)
+export * from "./ratioAnalysis";
+export {
+  TerpeneArchetype,
+  DominanceLevel,
+  computeRatioMetrics,
+  computeClrCoordinates,
+  classifyArchetype,
+  getArchetypeDescription,
+  TERPENE_CODES,
+  TERPENE_NAMES,
+  FIXED_TERPENE_ORDER,
+  type RankedTerpene,
+  type RatioSignature,
+  type ArchetypeClassification,
+  type TerpeneRatioMetrics,
+  type ArchetypeDescription,
+} from "./ratioAnalysis";
+
 // Version
-export const SDK_VERSION = "1.3.0";
+export const SDK_VERSION = "1.5.0";
 
 // Library metadata
 export const LIBRARY_INFO = {
   name: "@cdes/sdk-typescript",
-  version: SDK_VERSION,
+  version: "1.5.0",
   description:
     "Cannabis Data Exchange Standard (CDES) TypeScript SDK for Power BI and other applications",
   author: "Acidni LLC",
